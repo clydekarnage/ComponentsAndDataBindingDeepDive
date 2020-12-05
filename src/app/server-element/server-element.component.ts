@@ -1,5 +1,5 @@
 // tslint:disable-next-line:max-line-length
-import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, DoCheck, AfterContentInit, AfterContentChecked, AfterViewInit, AfterViewChecked, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-server-element',
@@ -18,6 +18,7 @@ export class ServerElementComponent implements
   // tslint:disable-next-line:no-input-rename
   @Input('srvElement') element: {type: string | undefined, name: string | undefined, content: string | undefined};
   @Input() name: string;
+  @ViewChild('heading', {static: true}) header: ElementRef;
 
   constructor() {
     console.log('constructor called');
@@ -30,6 +31,7 @@ export class ServerElementComponent implements
 
   ngOnInit(): void {
     console.log('ngOnInit called');
+    console.log('Text content:' + this.header.nativeElement.textContent);
   }
 
   ngDoCheck(): void {
@@ -46,6 +48,7 @@ export class ServerElementComponent implements
 
   ngAfterViewInit(): void {
     console.log('ngAfterViewInit called!');
+    console.log('Text content:' + this.header.nativeElement.textContent);
   }
 
   ngAfterViewChecked(): void {
